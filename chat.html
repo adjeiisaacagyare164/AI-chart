@@ -1,0 +1,138 @@
+<!-- API Key Modal -->
+<div class="modal-overlay" [class.hidden]="!showApiModal">
+  <div class="modal">
+    <div class="modal-icon">🔑</div>
+    <h2>Connect to Gemini AI</h2>
+    <p>
+      Enter your Gemini API key to power your AI Tutor. Your key is stored
+      locally in the browser and never shared.<br><br>
+      <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">
+        → Get a free API key from Google AI Studio
+      </a>
+    </p>
+    <input
+      #apiKeyField
+      type="password"
+      [(ngModel)]="pendingApiKey"
+      placeholder="AIza..."
+      autocomplete="off"
+      (keydown.enter)="saveApiKey()"
+    />
+    <button class="primary" (click)="saveApiKey()">Start Learning →</button>
+  </div>
+</div>
+
+<!-- Main Chat -->
+<div class="chat-container">
+
+  <header class="chat-header">
+    <div class="bot-info">
+      <div class="bot-avatar">🧠</div>
+      <div>
+        <h2>AI Tutor</h2>
+        <div class="status">
+          <span class="status-dot"></span>
+          Online · Powered by Gemini
+        </div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="header-btn" (click)="confirmClear = true" title="Clear chat" aria-label="Clear chat">🗑️</button>
+      <button class="header-btn" (click)="openApiModal()"     title="Settings"   aria-label="Settings">⚙️</button>
+    </div>
+  </header>
+
+  <!-- Confirm clear bar -->
+  @if (confirmClear) {
+    <div class="confirm-bar">
+      <span class="confirm-text">⚠️ Clear all messages?</span>
+      <div class="confirm-actions">
+        <button class="confirm-no"  (click)="confirmClear = false">Cancel</button>
+        <button class="confirm-yes" (click)="clearChat()">Yes, clear</button>
+      </div>
+    </div>
+  }
+
+  <main class="chat-messages" #messagesContainer role="log" aria-live="polite">
+
+    <!-- Welcome / empty state -->
+    @if (messages.length === 0) {
+      <div class="welcome-state">
+        <div class="welcome-icon">🧠</div>
+        <div class="welcome-title">Hello, I'm your AI Tutor</div>
+        <div class="welcome-sub">
+          Ask me anything — math, science, history, coding, languages, and more.
+          I'm here to help you truly understand.
+        </div>
+        <div class="suggestions">
+          @for (s of suggestions; track s) {
+            <button class="suggestion-chip" (click)="useSuggestion(s)">{{ s }}</button>
+          }
+        </div>
+      </div>
+    }
+
+    <!-- Message list -->
+    @for (msg of messages; track $index) {
+      <div class="message" [class.user-message]="msg.role === 'user'" [class.ai-message]="msg.role === 'ai'">
+
+        @if (msg.role === 'ai') {
+          <div class="message-row">
+            <div class="message-avatar">🧠</div>
+            <div class="message-bubble" [class.error-bubble]="msg.isError">
+              {{ msg.content }}
+            </div>
+          </div>
+        } @else {
+          <div class="message-row">
+            <div class="message-bubble">{{ msg.content }}</div>
+          </div>
+        }
+
+        <div class="message-time">{{ formatTime(msg.timestamp) }}</div>
+      </div>
+    }
+
+    <!-- Typing indicator -->
+    @if (isTyping) {
+      <div class="message ai-message">
+        <div class="message-row">
+          <div class="message-avatar">🧠</div>
+          <div class="typing">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- Scroll anchor -->
+    <div #messagesEnd></div>
+
+  </main>
+
+  <footer class="chat-input-area">
+    <div class="input-wrapper">
+      <input
+        type="text"
+        [(ngModel)]="userMessage"
+        (ngModelChange)="onInputChange()"
+        (keydown.enter)="sendMessage()"
+        placeholder="Ask your AI Tutor anything…"
+        [maxlength]="maxChars"
+        [disabled]="isLoading"
+        aria-label="Message input"
+      />
+      <div class="input-actions">
+        <button class="attach-btn" title="Attach file" aria-label="Attach file">📎</button>
+        <button
+          class="send-btn"
+          (click)="sendMessage()"
+          [disabled]="!userMessage.trim() || isLoading"
+          title="Send"
+          aria-label="Send message"
+        >➤</button>
+      </div>
+    </div>
+  </footer>
+
+</div>
