@@ -906,6 +906,272 @@
         padding: 0 16px;
       }
     }
+
+    /* Contemporary learning workspace */
+    :root {
+      --bg-base: #f6f7fb;
+      --bg-surface: #ffffff;
+      --bg-elevated: #ffffff;
+      --border: #e8eaf1;
+      --accent: #6754e8;
+      --accent-2: #806cf3;
+      --accent-glow: rgba(103, 84, 232, .18);
+      --green: #2f9b72;
+      --text-primary: #202238;
+      --text-secondary: #666b80;
+      --text-muted: #9297a9;
+    }
+
+    body {
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(226, 221, 255, .52), transparent 42%),
+        #f6f7fb;
+      color: var(--text-primary);
+    }
+
+    body::before { display: none; }
+
+    .chat-container {
+      width: min(1120px, 100vw);
+      background: rgba(255, 255, 255, .82);
+      border: 1px solid rgba(226, 228, 238, .85);
+      border-top: 0;
+      border-bottom: 0;
+      backdrop-filter: blur(28px);
+      box-shadow: 0 24px 80px rgba(44, 49, 79, .07);
+    }
+
+    .chat-header {
+      height: 78px;
+      padding: 0 clamp(20px, 4vw, 48px);
+      background: rgba(255, 255, 255, .72);
+      border-color: var(--border);
+    }
+
+    .bot-info { gap: 13px; }
+
+    .bot-avatar,
+    .msg-avatar {
+      color: #fff;
+      background: linear-gradient(145deg, #8978f5, #6552df);
+      box-shadow: 0 8px 20px rgba(103, 84, 232, .2);
+    }
+
+    .bot-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 15px;
+      font-size: 24px;
+    }
+
+    .bot-avatar::after { border-color: #fff; }
+    .bot-name { font-size: 15px; letter-spacing: -.2px; }
+    .bot-status { color: var(--text-muted); font-size: 11px; }
+    .status-dot { background: var(--green); }
+
+    .header-btn {
+      width: 40px;
+      height: 40px;
+      background: #f4f4f9;
+      color: #777b8f;
+      border: 1px solid #ececf3;
+      border-radius: 13px;
+    }
+    .header-btn:hover {
+      background: #efedff;
+      border-color: #ded9ff;
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .chat-messages {
+      padding: clamp(24px, 5vh, 58px) clamp(20px, 7vw, 88px) 28px;
+      gap: 26px;
+      scroll-padding-bottom: 24px;
+    }
+
+    .welcome-state {
+      max-width: 760px;
+      width: 100%;
+      margin: auto;
+      padding: 32px 12px;
+      gap: 16px;
+    }
+
+    .welcome-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 20px;
+      font-size: 28px;
+      background: linear-gradient(145deg, #eeeaff, #e5e0ff);
+      color: #6b58e7;
+      box-shadow: inset 0 0 0 1px rgba(103, 84, 232, .09);
+      animation: none;
+    }
+
+    .welcome-title {
+      margin-top: 5px;
+      font-size: clamp(28px, 4vw, 38px);
+      font-weight: 680;
+      letter-spacing: -1.5px;
+      line-height: 1.15;
+    }
+
+    .welcome-sub {
+      color: #777b8e;
+      font-size: 15px;
+      line-height: 1.75;
+      max-width: 470px;
+    }
+
+    .suggestions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      width: min(100%, 620px);
+      margin-top: 16px;
+    }
+
+    .suggestion-chip {
+      min-height: 62px;
+      padding: 14px 18px;
+      border-radius: 15px;
+      border-color: #e9eaf1;
+      background: rgba(255, 255, 255, .82);
+      color: #575c70;
+      text-align: left;
+      font-size: 12.5px;
+      line-height: 1.45;
+      box-shadow: 0 3px 12px rgba(41, 46, 74, .025);
+    }
+
+    .suggestion-chip::after {
+      content: "↗";
+      float: right;
+      margin-left: 8px;
+      color: #a4a0c8;
+    }
+
+    .suggestion-chip:hover {
+      background: #fff;
+      border-color: #d7d1ff;
+      color: #5544c8;
+      transform: translateY(-2px);
+      box-shadow: 0 9px 22px rgba(74, 62, 160, .08);
+    }
+
+    .msg-row { max-width: min(78%, 700px); gap: 12px; }
+    .msg-avatar { width: 30px; height: 30px; border-radius: 11px; font-size: 15px; }
+    .msg-bubble {
+      padding: 14px 18px;
+      border-radius: 19px;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    .ai .msg-bubble {
+      background: #fff;
+      border: 1px solid #e9eaf1;
+      color: #41465b;
+      border-bottom-left-radius: 6px;
+      box-shadow: 0 4px 14px rgba(41, 46, 74, .035);
+    }
+    .user .msg-bubble {
+      background: linear-gradient(135deg, #7563ed, #6552dc);
+      border-bottom-right-radius: 6px;
+      box-shadow: 0 7px 18px rgba(103, 84, 232, .18);
+    }
+    .msg-time { color: #a1a5b4; font-size: 10px; }
+
+    .typing-dots {
+      background: #fff;
+      border-color: var(--border);
+      box-shadow: 0 4px 14px rgba(41, 46, 74, .035);
+    }
+
+    .chat-footer {
+      padding: 14px clamp(18px, 5vw, 64px) 18px;
+      background: linear-gradient(0deg, #fff 62%, rgba(255,255,255,.92));
+      border-color: var(--border);
+    }
+
+    .input-wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+      min-height: 62px;
+      align-items: center;
+      padding: 10px 10px 10px 20px;
+      background: #fff;
+      border: 1px solid #e4e5ee;
+      border-radius: 19px;
+      box-shadow: 0 8px 26px rgba(39, 43, 69, .07);
+    }
+
+    .input-wrapper:focus-within {
+      border-color: #c9c1ff;
+      box-shadow: 0 0 0 4px rgba(103, 84, 232, .08), 0 8px 26px rgba(39, 43, 69, .06);
+    }
+
+    #messageInput { color: #292d42; font-size: 14px; }
+    #messageInput::placeholder { color: #a0a4b3; }
+    .attach-btn { background: transparent; color: #9296a8; }
+    .attach-btn:hover { background: #f5f4fb; color: var(--accent); }
+    #sendBtn {
+      width: 40px;
+      height: 40px;
+      border-radius: 13px;
+      background: linear-gradient(145deg, #806ef2, #6552df);
+      box-shadow: 0 5px 14px rgba(103, 84, 232, .2);
+    }
+
+    .input-meta { max-width: 820px; margin: 0 auto; padding: 9px 3px 0; }
+    .input-hint, #charCount { color: #a0a4b3; font-size: 10px; }
+
+    .confirm-bar {
+      top: 78px;
+      padding: 12px clamp(20px, 4vw, 48px);
+      background: #fff8f5;
+      border-color: #f4d8cf;
+    }
+    .confirm-text { color: #a7523f; }
+
+    .modal {
+      background: #fff;
+      border-color: #e8e6f4;
+      box-shadow: 0 30px 90px rgba(39, 43, 69, .18);
+    }
+    .modal h2 { color: var(--text-primary); }
+    .modal p { color: var(--text-secondary); }
+    .modal input {
+      background: #fafaff;
+      border-color: #e6e7ef;
+      color: var(--text-primary);
+    }
+
+    :focus-visible {
+      outline: 3px solid rgba(103, 84, 232, .38);
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 600px) {
+      .chat-container { border: 0; }
+      .chat-header { height: 68px; padding: 0 18px; }
+      .chat-messages { padding: 20px 16px; }
+      .welcome-state { padding: 20px 2px; }
+      .welcome-sub { font-size: 13px; }
+      .suggestions { grid-template-columns: 1fr; gap: 8px; margin-top: 10px; }
+      .suggestion-chip { min-height: 52px; padding: 12px 15px; }
+      .msg-row { max-width: 92%; }
+      .chat-footer { padding: 10px 12px max(14px, env(safe-area-inset-bottom)); }
+      .input-wrapper { min-height: 58px; padding-left: 15px; }
+      .input-hint { display: none; }
+      .input-meta { justify-content: flex-end; }
+      .modal { padding: 28px 24px; }
+      .confirm-bar { top: 68px; padding: 10px 16px; gap: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
   </style>
 </head>
 
@@ -930,12 +1196,12 @@
 
     <header class="chat-header">
       <div class="bot-info">
-        <div class="bot-avatar">🧠</div>
+        <div class="bot-avatar">✦</div>
         <div>
           <div class="bot-name">AI Tutor</div>
           <div class="bot-status">
             <span class="status-dot"></span>
-            Online · AGYVEX-Tech.
+            Online · Ready to help
           </div>
         </div>
       </div>
@@ -947,17 +1213,16 @@
     <main class="chat-messages" id="chatMessages" role="log" aria-live="polite" aria-label="Chat messages">
 
       <div class="welcome-state" id="welcomeState">
-        <div class="welcome-icon">🧠</div>
-        <div class="welcome-title">Hello, I'm your AI Tutor</div>
-        <div class="welcome-sub">Ask me anything — math, science, history, coding, languages, and more. I'm here to help
-          you truly understand.</div>
+        <div class="welcome-icon" aria-hidden="true">✦</div>
+        <div class="welcome-title">What would you like to learn?</div>
+        <div class="welcome-sub">Explore a new idea, work through a tricky problem, or build a skill. Your next breakthrough starts with a question.</div>
         <div class="suggestions" id="suggestions">
-          <button class="suggestion-chip">Explain quantum physics simply</button>
+          <button class="suggestion-chip">Explain quantum physics in simple terms</button>
           <button class="suggestion-chip">Help me write a Python script</button>
-          <button class="suggestion-chip">What is machine learning?</button>
-          <button class="suggestion-chip">Teach me calculus basics</button>
-          <button class="suggestion-chip">Summarize the French Revolution</button>
-          <button class="suggestion-chip">How does the internet work?</button>
+          <button class="suggestion-chip">Show me how machine learning works</button>
+          <button class="suggestion-chip">Teach me the basics of calculus</button>
+          <button class="suggestion-chip">Give me a quick guide to the French Revolution</button>
+          <button class="suggestion-chip">Explain how the internet works</button>
         </div>
       </div>
 

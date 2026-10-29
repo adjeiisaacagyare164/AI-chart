@@ -37,12 +37,12 @@ export class Chat implements OnInit, AfterViewChecked {
     maxChars     = 4000;
 
     suggestions = [
-        'Explain quantum physics simply',
+        'Explain quantum physics in simple terms',
         'Help me write a Python script',
-        'What is machine learning?',
-        'Teach me calculus basics',
-        'Summarize the French Revolution',
-        'How does the internet work?',
+        'Show me how machine learning works',
+        'Teach me the basics of calculus',
+        'Give me a quick guide to the French Revolution',
+        'Explain how the internet works',
     ];
 
     // ── Private state ─────────────────────────────────────────────────────

@@ -27,12 +27,12 @@
 
   <header class="chat-header">
     <div class="bot-info">
-      <div class="bot-avatar">🧠</div>
+      <div class="bot-avatar">✦</div>
       <div>
         <h2>AI Tutor</h2>
         <div class="status">
           <span class="status-dot"></span>
-          Online · Powered by Gemini
+          Online · Ready to help
         </div>
       </div>
     </div>
@@ -58,11 +58,11 @@
     <!-- Welcome / empty state -->
     @if (messages.length === 0) {
       <div class="welcome-state">
-        <div class="welcome-icon">🧠</div>
-        <div class="welcome-title">Hello, I'm your AI Tutor</div>
+        <div class="welcome-icon" aria-hidden="true">✦</div>
+        <div class="welcome-title">What would you like to learn?</div>
         <div class="welcome-sub">
-          Ask me anything — math, science, history, coding, languages, and more.
-          I'm here to help you truly understand.
+          Explore a new idea, work through a tricky problem, or build a skill.
+          Your next breakthrough starts with a question.
         </div>
         <div class="suggestions">
           @for (s of suggestions; track s) {
